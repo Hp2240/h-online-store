@@ -43,10 +43,10 @@ ERD
 
 ### **_Credits_**
 
-##### Source: [1](http://g-use.com)
+##### Source[1]: [1](http://g-use.com)
 
 ---
 
 ### **_Trello Board_**
 
-[Hyeree's Project 1](https://trello.com/b/S3kimaQA/project-2-ga)
+[Project 2](https://trello.com/b/S3kimaQA/project-2-ga)
