@@ -15,6 +15,7 @@ const createProduct = async (req, res) => {
 }
 
 const getAllProducts = async (req, res) => {
+  console.log('this method is being called')
   try {
     const products = await Product.find()
     return res.status(201).json({
@@ -49,9 +50,35 @@ const createOrder = async (req, res) => {
   }
 }
 
+const getProductById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const product = await Product.findById(id)
+    if (product) {
+      return res.status(201).json({ product })
+    }
+    return res.status(404).send('Prodcut with the specified ID does not exists')
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const updateProduct = async (req, res) => {
+  try {
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    })
+    return res.status(201).json(product)
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
   createClient,
-  createOrder
+  createOrder,
+  getProductById,
+  updateProduct
 }

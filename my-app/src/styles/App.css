@@ -26,9 +26,6 @@ header nav a {
   font-weight: bold;
   color: black;
 }
-
-
-
 .container img {
   width: 90%;
   height: 300px;
@@ -41,7 +38,7 @@ header nav a {
   justify-content: flex-end;
 }
 
-.sidebar {
+/* .sidebar {
   position: fixed;
     float: left;
     width: 13.2%;
@@ -50,7 +47,7 @@ header nav a {
     height: 100%;
     z-index: 99;
     background: none;
-}
+} */
 /* nav {
   display: flex;
   align-items: center;

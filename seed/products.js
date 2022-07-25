@@ -25,7 +25,49 @@ const main = async () => {
       price: '37',
       category: 'dress',
       image:
+        'http://g-use.com/web/product/medium/202207/1ada6eb466650ef73b0b277c6542f3e2.jpg'
+    },
+    {
+      name: 'a pants',
+      price: '17',
+      category: 'bottom',
+      image:
         'http://g-use.com/web/product/big/201905/e3d429d05c66a6f7e9fc2a4b8f735f92.jpg'
+    },
+    {
+      name: 'b pants',
+      price: '35',
+      category: 'bottom',
+      image:
+        'http://g-use.com/web/product/big/201905/e3d429d05c66a6f7e9fc2a4b8f735f92.jpg'
+    },
+    {
+      name: 'c top',
+      price: '20',
+      category: 'dress',
+      image:
+        'http://g-use.com/web/product/big/201905/e3d429d05c66a6f7e9fc2a4b8f735f92.jpg'
+    },
+    {
+      name: 'c top',
+      price: '16',
+      category: 'top',
+      image:
+        'http://g-use.com/web/product/big/201905/e3d429d05c66a6f7e9fc2a4b8f735f92.jpg'
+    },
+    {
+      name: 'e dress',
+      price: '51',
+      category: 'dress',
+      image:
+        'http://g-use.com/web/product/medium/202204/d0f5b333be11cf69f88aa116405c86a6.jpg'
+    },
+    {
+      name: 'e top',
+      price: '12',
+      category: 'top',
+      image:
+        'http://g-use.com/web/product/medium/201905/9e29cf244b5fc985669714d422f7cb2c.jpg'
     }
   ]
 
