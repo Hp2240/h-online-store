@@ -38,6 +38,17 @@ header nav a {
   justify-content: flex-end;
 }
 
+input {
+  margin: 0 1em;
+}
+
+button {
+  padding: 0.2em 1em;
+  border: 0;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
 /* .sidebar {
   position: fixed;
     float: left;

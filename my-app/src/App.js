@@ -6,6 +6,8 @@ import About from './pages/About'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import img from './img/logo.png'
+import Order from './pages/Order'
+import Search from './components/Search'
 
 function App() {
   return (
@@ -15,11 +17,13 @@ function App() {
       </h1>
       <header>
         <Header />
+        <Search />
       </header>
       <Sidebar />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/order" element={<Order />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>

@@ -26,30 +26,6 @@ const getAllProducts = async (req, res) => {
   }
 }
 
-const createClient = async (req, res) => {
-  try {
-    const client = await new Client(req.body)
-    await client.save()
-    return res.status(201).json({
-      client
-    })
-  } catch (error) {
-    return res.status(500).json({ error: error.message })
-  }
-}
-
-const createOrder = async (req, res) => {
-  try {
-    const order = await new Order(req.body)
-    await order.save()
-    return res.status(201).json({
-      order
-    })
-  } catch (error) {
-    return res.status(500).json({ error: error.message })
-  }
-}
-
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params
@@ -74,11 +50,89 @@ const updateProduct = async (req, res) => {
   }
 }
 
+const deleteProduct = async (req, res) => {
+  try {
+    const { id } = req.params
+    const deleted = await Product.findByIdAndDelete(id)
+    if (deleted) {
+      return res.status(200).send('Product deleted')
+    }
+    throw new Error('Product not found')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const createClient = async (req, res) => {
+  try {
+    const client = await new Client(req.body)
+    await client.save()
+    return res.status(201).json({
+      client
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const getAllClients = async (req, res) => {
+  console.log('this method (client) is being called')
+  try {
+    const clients = await Client.find()
+    return res.status(201).json({
+      clients
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const createOrder = async (req, res) => {
+  try {
+    const order = await new Order(req.body)
+    await order.save()
+    return res.status(201).json({
+      order
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const getAllOrders = async (req, res) => {
+  console.log('this method (order) is being called')
+  try {
+    const orders = await Order.find()
+    return res.status(201).json({
+      orders
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const deleteOrder = async (req, res) => {
+  try {
+    const { id } = req.params
+    const deleted = await Order.findByIdAndDelete(id)
+    if (deleted) {
+      return res.status(200).send('Order deleted')
+    }
+    throw new Error('Order not found')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 module.exports = {
   createProduct,
   getAllProducts,
-  createClient,
-  createOrder,
   getProductById,
-  updateProduct
+  updateProduct,
+  deleteProduct,
+  createClient,
+  getAllClients,
+  createOrder,
+  getAllOrders,
+  deleteOrder
 }
