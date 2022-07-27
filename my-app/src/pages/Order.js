@@ -1,47 +1,52 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const Order = () => {
-  const [ordered, setOrdered] = useState([])
-  const [clients, setClients] = useState({
-    name: '',
-    email: '',
-    address: ''
-  })
-
+  const [buyProducts, setBuyProducts] = useState([])
+  const [order, setOrder] = useState('')
   useEffect(() => {
-    const getClients = async () => {
-      const res = await axios.get(`http://localhost:3001/api/clients`)
-      console.log(res.data.clients)
-      //setOrdered(res.data.clients)
+    const getProducts = async () => {
+      const res = await axios.get(`http://localhost:3001/api/products`)
+      console.log(res.data.products)
+      setBuyProducts(res.data.products)
     }
-    getClients()
+    getProducts()
   }, [])
 
   const handleChange = (event) => {
-    let clientInfo = {
-      ...clients,
-      [event.currentTarget.id]: event.currentTarget.value
-    }
-    setClients(clientInfo)
-    console.log(event.target.value)
+    let makeOrder = event.target.value
+    setOrder(makeOrder)
   }
 
-  const handleSubmit = async (event) => {
-    try {
-      //let res = await axios.post(`http://localhost:3001/api/clients`, clients)
-    } catch {}
-  }
+  let buyItem = buyProducts.map((buyProduct) => (
+    <option key={buyProduct._id}>
+      {/* <img src={buyProduct.image} /> */}
+      {buyProduct.name}
+    </option>
+  ))
+
   return (
-    <form>
-      <label htmlFor="name">Name: </label>
-      <input type="text" id="name" onChange={handleChange} />
-      <label htmlFor="email">Email: </label>
-      <input type="text" id="email" onChange={handleChange} />
-      <label htmlFor="address">Address: </label>
-      <input type="text" id="address" onChange={handleChange} />
-      <button>submit</button>
-    </form>
+    <div className="form">
+      <h2>Place an Order</h2>
+      <label className="dropdown">Select what you want to buy </label>
+      <select id="name" onChange={handleChange}>
+        <optgroup label="Choose product">{buyItem}</optgroup>
+      </select>
+      <button className="btn-buy">
+        <Link to="/clients">order</Link>
+      </button>
+    </div>
+
+    // <form>
+    //   <label htmlFor="name">Name: </label>
+    //   <input type="text" id="name" onChange={handleChange} />
+    //   <label htmlFor="email">Email: </label>
+    //   <input type="text" id="email" onChange={handleChange} />
+    //   <label htmlFor="address">Address: </label>
+    //   <input type="text" id="address" onChange={handleChange} />
+    //   <button>submit</button>
+    // </form>
   )
 }
 

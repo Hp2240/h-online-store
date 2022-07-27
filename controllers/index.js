@@ -110,6 +110,16 @@ const getAllOrders = async (req, res) => {
     return res.status(500).json({ error: error.message })
   }
 }
+const updateOrder = async (req, res) => {
+  try {
+    const order = await Order.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    })
+    return res.status(201).json(order)
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
 
 const deleteOrder = async (req, res) => {
   try {
@@ -134,5 +144,6 @@ module.exports = {
   getAllClients,
   createOrder,
   getAllOrders,
-  deleteOrder
+  deleteOrder,
+  updateOrder
 }

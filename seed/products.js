@@ -5,27 +5,40 @@ const Product = require('../models/product')
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 const main = async () => {
+  // const companyA = await Company.find({ name: "Company A" })
+  // const companyB = await Company.find({ name: "Company B" })
+  // const companyC = await Company.find({ name: "Company C" })
+  // const companyD = await Company.find({ name: "Company D" })
+  // const companyE = await Company.find({ name: "Company E" })
+  // const companyF = await Company.find({ name: "Company F" })
+  // const companyG = await Company.find({ name: "Company G" })
+  // const companyH = await Company.find({ name: "Company H" })
+  // const companyI = await Company.find({ name: "Company I" })
+
   const products = [
     {
       name: 'denim pants',
       price: '35',
       category: 'bottom',
       image:
-        'http://g-use.com/web/product/medium/202205/846d45aa4bb66de41129fc1de7fcf79d.jpg'
+        'http://g-use.com/web/product/medium/202205/846d45aa4bb66de41129fc1de7fcf79d.jpg',
+      company_id: companyA[0]._id
     },
     {
       name: 'b t-shirt',
       price: '13',
       category: 'top',
       image:
-        'http://g-use.com/web/product/medium/202205/25b978be1a4724b2834b67cde48d4001.jpg'
+        'http://g-use.com/web/product/medium/202205/25b978be1a4724b2834b67cde48d4001.jpg',
+      company_id: companyB[0]._id
     },
     {
       name: 'a dress',
       price: '37',
       category: 'dress',
       image:
-        'http://g-use.com/web/product/medium/202207/1ada6eb466650ef73b0b277c6542f3e2.jpg'
+        'http://g-use.com/web/product/medium/202207/1ada6eb466650ef73b0b277c6542f3e2.jpg',
+      company_id: companyA[0]._id
     },
     {
       name: 'a pants',

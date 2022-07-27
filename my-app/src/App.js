@@ -8,6 +8,8 @@ import Header from './components/Header'
 import img from './img/logo.png'
 import Order from './pages/Order'
 import Search from './components/Search'
+import ClientInfo from './components/ClientInfo'
+import ProductDetails from './components/ProductDetails'
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/order" element={<Order />} />
           <Route path="/about" element={<About />} />
+          <Route path="/clients" element={<ClientInfo />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
         </Routes>
       </main>
     </div>
