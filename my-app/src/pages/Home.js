@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Search from '../components/Search'
-import ProductDetails from '../components/ProductDetails'
 
 const Home = () => {
   const [products, setProducts] = useState([])
@@ -25,7 +24,7 @@ const Home = () => {
   }, [])
   const showProductDetails = (products) => {
     console.log(products._id)
-    navigate(`/products/:id`)
+    navigate(`/products/${products._id}`)
   }
 
   // const getSearchResults = async (e) => {
