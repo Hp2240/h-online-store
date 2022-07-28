@@ -23,7 +23,7 @@ const Home = () => {
     getProducts()
   }, [])
   const showProductDetails = (products) => {
-    console.log(products._id)
+    //console.log(products._id)
     navigate(`/products/${products._id}`)
   }
 

@@ -87,6 +87,17 @@ const getAllClients = async (req, res) => {
   }
 }
 
+const updateClient = async (req, res) => {
+  try {
+    const client = await Client.findByIdAndUpdate(req.params.id, req.body, {
+      new: true
+    })
+    return res.status(201).json(client)
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
 const createOrder = async (req, res) => {
   try {
     const order = await new Order(req.body)
@@ -94,6 +105,19 @@ const createOrder = async (req, res) => {
     return res.status(201).json({
       order
     })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const getClientById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const client = await Product.findById(id)
+    if (client) {
+      return res.status(201).json({ client })
+    }
+    return res.status(404).send('Prodcut with the specified ID does not exists')
   } catch (error) {
     return res.status(500).json({ error: error.message })
   }
@@ -142,6 +166,8 @@ module.exports = {
   deleteProduct,
   createClient,
   getAllClients,
+  getClientById,
+  updateClient,
   createOrder,
   getAllOrders,
   deleteOrder,

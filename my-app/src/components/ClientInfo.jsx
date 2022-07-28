@@ -28,11 +28,13 @@ const ClientInfo = () => {
 
   const handleSubmit = async (event) => {
     try {
-      //let res = await axios.post(`http://localhost:3001/api/orders`, clients)
-    } catch {}
+      let res = await axios.post(`http://localhost:3001/api/orders`)
+    } catch (err) {
+      console.log(err)
+    }
   }
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h2>WHO ARE YOU?</h2>
         <label htmlFor="name">Name: </label>
        <input type="text" placeholder="name" id="name" onChange={handleChange} />
@@ -40,8 +42,9 @@ const ClientInfo = () => {
        <input type="text" placeholder="email" id="email" onChange={handleChange} />
        <label htmlFor="address">Address: </label>
        <input type="text" placeholder="address" id="address" onChange={handleChange} />
-       <button type="submit" id="purchase-btn">Purchase</button>
+       <button type="submit" id="purchase-btn">Order</button>
     </form>
+    
   )
 }
 

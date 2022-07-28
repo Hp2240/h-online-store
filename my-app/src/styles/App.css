@@ -42,11 +42,74 @@ input {
   margin: 0 1em;
 }
 
-button {
+/* button {
   padding: 0.2em 1em;
   border: 0;
   border-radius: 4px;
   font-size: 1.1rem;
+  cursor: pointer;
+} */
+
+
+.details-container {
+  display: inline-block;
+  background: white;
+  padding: 3em;
+  height: 320px;
+  border-radius: 20px;
+  border-left: 1px solid gray;
+  border-top: 1px solid gray;
+  backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  grid-template-columns: repeat(auto-fill, 200px);
+  grid-gap: 0.5em;
+  justify-content: center;
+}
+
+form {
+  display: inline-block;
+  background: white;
+  padding: 3em;
+  height: 320px;
+  border-radius: 20px;
+  border-left: 1px solid gray;
+  border-top: 1px solid gray;
+  backdrop-filter: blur(10px);
+  box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+input {
+  background: transparent;
+  width: 250px;
+  padding: 1em;
+  margin-bottom: 2em;
+  margin-right: 2em;
+  border: none;
+  border-left: 1px solid gray;
+  border-top: 1px solid gray;
+  border-radius: 5000px;
+  backdrop-filter: blur(5px);
+  box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
+  color: gray;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  border: none;
+  font-size: 1rem;
+  background-color: gray;
+  padding: 0.4rem 0.6rem;
+  border-radius: 15px;
+  font-weight: bold;
   cursor: pointer;
 }
 /* .sidebar {

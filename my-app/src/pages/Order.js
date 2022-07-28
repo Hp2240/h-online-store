@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 const Order = () => {
   const [buyProducts, setBuyProducts] = useState([])
-  const [order, setOrder] = useState('')
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(`http://localhost:3001/api/products`)
@@ -14,10 +13,10 @@ const Order = () => {
     getProducts()
   }, [])
 
-  const handleChange = (event) => {
-    let makeOrder = event.target.value
-    setOrder(makeOrder)
-  }
+  // const handleChange = (event) => {
+  //   let makeOrder = event.target.value
+  //   setOrder(makeOrder)
+  // }
 
   let buyItem = buyProducts.map((buyProduct) => (
     <option key={buyProduct._id}>
@@ -30,7 +29,7 @@ const Order = () => {
     <div className="form">
       <h2>Place an Order</h2>
       <label className="dropdown">Select what you want to buy </label>
-      <select id="name" onChange={handleChange}>
+      <select id="name">
         <optgroup label="Choose product">{buyItem}</optgroup>
       </select>
       <button className="btn-buy">
