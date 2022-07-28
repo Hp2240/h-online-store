@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import ClientInfo from './ClientInfo'
 
-const ProductDetails = (props) => {
+const ProductDetails = () => {
   const [productDetails, setProductDetails] = useState("")
-      const [clients, setClients] = useState({
+  const [clients, setClients] = useState({
     name: '',
     email: '',
     address: ''

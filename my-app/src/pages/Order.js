@@ -1,40 +1,81 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 
 const Order = () => {
-  const [buyProducts, setBuyProducts] = useState([])
+  const [buyProducts, setBuyProducts] = useState({})
+  const [client, setClient] = useState()
+  const [search, setSearch] = useState([], {
+    name: '',
+    email: ''
+  })
+
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`http://localhost:3001/api/products`)
-      console.log(res.data.products)
-      setBuyProducts(res.data.products)
+      const res = await axios.get(`http://localhost:3001/api/orders`)
+      //console.log(res.data)
+      setBuyProducts(res.data.orders)
     }
     getProducts()
   }, [])
+
+  useEffect(() => {
+    const getClient = async () => {
+      const res = await axios.get('http://localhost:3001/api/clients')
+      //console.log(res.data.clients)
+      setClient(res.data.clients)
+    }
+    getClient()
+  }, [])
+
+  const handleChange = (event) => {
+    let info = { ...client, [event.target.id]: event.target.value }
+    setSearch(info)
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    console.log(client)
+    console.log(search)
+    let searched = client.find((c) => c.email === search.email)
+    if (searched) {
+      console.log('Order found')
+    } else {
+      console.log('Order not found')
+    }
+  }
 
   // const handleChange = (event) => {
   //   let makeOrder = event.target.value
   //   setOrder(makeOrder)
   // }
 
-  let buyItem = buyProducts.map((buyProduct) => (
-    <option key={buyProduct._id}>
-      {/* <img src={buyProduct.image} /> */}
-      {buyProduct.name}
-    </option>
-  ))
+  // let buyItem = buyProducts.map((buyProduct) => (
+  //   <option key={buyProduct._id}>
+  //     {/* <img src={buyProduct.image} /> */}
+  //     {buyProduct.name}
+  //   </option>
+  // ))
 
   return (
-    <div className="form">
-      <h2>Place an Order</h2>
-      <label className="dropdown">Select what you want to buy </label>
-      <select id="name">
-        <optgroup label="Choose product">{buyItem}</optgroup>
-      </select>
-      <button className="btn-buy">
-        <Link to="/clients">order</Link>
-      </button>
+    <div className="orders">
+      <form onSubmit={handleSubmit}>
+        <h3>Find order</h3>
+        <label htmlFor="name">Name: </label>
+        <input
+          type="text"
+          placeholder="name"
+          id="name"
+          onChange={handleChange}
+        />
+        <label htmlFor="email">Email: </label>
+        <input
+          type="text"
+          placeholder="email"
+          id="email"
+          onChange={handleChange}
+        />
+        <button type="submit">Find</button>
+      </form>
     </div>
 
     // <form>
