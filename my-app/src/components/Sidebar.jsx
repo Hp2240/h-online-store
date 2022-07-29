@@ -1,4 +1,19 @@
+import { useEffect, useState } from "react"
+import axios from "axios"
+
 const Sidebar = () => {
+  // const [productCategory, SetProductCategory] = useState([])
+
+  // useEffect(() => {
+  //   const getProductByCategory = async () => {
+  //     const res = await axios.get( `http://localhost:3001/api/products`)
+  //   }
+  //   console.log(res.data.product)
+  //   SetProductCategory(res.data.product.category)
+  //   getProductByCategory()
+  // }, [])
+
+
   return (
     <div className="mene-hover-fill">
       <ul>

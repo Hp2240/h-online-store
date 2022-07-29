@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { PromiseProvider } from 'mongoose'
+import { set } from 'mongoose'
 
 const Order = () => {
-  const [buyProducts, setBuyProducts] = useState({})
+  const [buyProducts, setBuyProducts] = useState([])
   const [client, setClient] = useState()
   const [search, setSearch] = useState({
     name: '',
     email: ''
   })
   const [errorMsg, setErrorMsg] = useState('')
-  const [product, setProduct] = useState()
+  const [product, setProduct] = useState({})
 
   let [found, setFound] = useState(null)
   let [img, setImg] = useState()
+  let [updateProduct, setUpdateProduct] = useState()
+
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(`http://localhost:3001/api/products`)
@@ -47,15 +49,14 @@ const Order = () => {
     let searched = client.find(
       (c) => c.email === search.email && c.name === search.name
     )
+    console.log(searched)
     if (searched) {
-      console.log('Order found')
       setFound(searched)
       try {
         let res = await axios.get(
           `http://localhost:3001/api/products/${searched.product_id}`
         )
-        setProduct(res.data.poduct)
-        console.log(res.data.product)
+        setProduct(res.data.product)
         setImg(res.data.product.image)
       } catch (err) {
         console.log(err)
@@ -66,17 +67,62 @@ const Order = () => {
     }
   }
 
-  // const handleChange = (event) => {
-  //   let makeOrder = event.target.value
-  //   setOrder(makeOrder)
-  // }
+  const handleProductChange = (event) => {
+    let item = event.target.value
+    setUpdateProduct(item)
+  }
 
-  // let buyItem = buyProducts.map((buyProduct) => (
-  //   <option key={buyProduct._id}>
-  //     {/* <img src={buyProduct.image} /> */}
-  //     {buyProduct.name}
-  //   </option>
-  // ))
+  const handleUpdateSubmit = async (event) => {
+    event.preventDefault()
+    let searched = buyProducts.find((p) => p.name === updateProduct)
+    let cl = client.find((c) => c.product_id === product._id)
+
+    if (found.name !== updateProduct) {
+      console.log('product_id: ', searched._id)
+      console.log('client id: ', cl._id)
+      console.log('client product id: ', cl.product_id)
+
+      try {
+        let res = await axios.put(
+          `http://localhost:3001/api/clients/${cl._id}`,
+          {
+            _id: cl._id,
+            name: cl.name,
+            email: cl.email,
+            address: cl.address,
+            product_id: searched._id
+          }
+        )
+        let pro = await axios.get(
+          `http://localhost:3001/api/products/${searched._id}`
+        )
+        setImg(pro.data.product.image)
+        console.log('??')
+      } catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
+  const handleDeleteSubmit = async (event) => {
+    event.preventDefault()
+    let searched = client.find(
+      (c) => c.email === search.email && c.name === search.name
+    )
+    console.log(searched)
+    try {
+      let res = await axios.delete(
+        `http://localhost:3001/api/clients/${client.id}`
+      )
+      console.log('deleted')
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  let optionItem = buyProducts.map((buyProduct) => (
+    <option key={buyProduct._id}>{buyProduct.name}</option>
+  ))
 
   return (
     <div className="orders">
@@ -97,11 +143,51 @@ const Order = () => {
           onChange={handleChange}
         />
         <button type="submit">Find</button>
+        {found ? (
+          <section>
+            <h4>Order Details </h4>
+            <h5>Name: {found.name}</h5>
+            <h5>Email: {found.email}</h5>
+            <h5>Product Name: {product.name}</h5>
+            <button onClick={handleDeleteSubmit}>Delete</button>
+            <img src={img} width="150px" height="150px" alt="image" />
+            <label>Select new item:</label>
+            <select onChange={handleProductChange}>{optionItem}</select>
+            <button onClick={handleUpdateSubmit}>Update</button>
+          </section>
+        ) : (
+          ''
+        )}
+      </form>
+      {/* {found ? (
+        <section>
+          <h4>Order Details: {found.name}</h4>
+          <label>Select new item:</label>
+          <select onChange={handleProductChange}>{optionItem}</select>
+          <button>Update</button>
+          <button>Delete</button>
+        </section>
+      ) : (
+        ''
+      )} */}
+      {/* <button type="submit">Find</button>
         <h4>Order Details: {found ? found.name : ''}</h4>
         <button style={found ? { display: 'block' } : { display: 'none' }}>
           Update
         </button>
-        <button style={found ? { display: 'block' } : { display: 'none' }}>
+        <label style={found ? { display: 'block' } : { display: 'none' }}>
+          Select new item:
+        </label>
+        <select
+          style={found ? { display: 'block' } : { display: 'none' }}
+          onChange={handleProductChange}
+        >
+          {optionItem}
+        </select>
+        <button
+          style={found ? { display: 'block' } : { display: 'none' }}
+          onSubmit={handleUpdateSubmit}
+        >
           Delete
         </button>
         <img
@@ -111,7 +197,7 @@ const Order = () => {
           height="150px"
           alt="image"
         />
-      </form>
+      </form> */}
     </div>
 
     // <form>

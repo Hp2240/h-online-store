@@ -113,7 +113,7 @@ const createOrder = async (req, res) => {
 const getClientById = async (req, res) => {
   try {
     const { id } = req.params
-    const client = await Product.findById(id)
+    const client = await Client.findById(id)
     if (client) {
       return res.status(201).json({ client })
     }
