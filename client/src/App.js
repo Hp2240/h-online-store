@@ -7,9 +7,9 @@ import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import img from './img/logo.png'
 import Order from './pages/Order'
-import Search from './components/Search'
 import ClientInfo from './components/ClientInfo'
 import ProductDetails from './components/ProductDetails'
+import Outer from './pages/Outer'
 
 function App() {
   return (
@@ -19,7 +19,6 @@ function App() {
       </h1>
       <header>
         <Header />
-        <Search />
       </header>
       <Sidebar />
       <main>
@@ -27,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/order" element={<Order />} />
           <Route path="/about" element={<About />} />
+          <Route path="/outer" element={<Outer />} />
           <Route path="/clients" element={<ClientInfo />} />
           <Route path="/products/:id" element={<ProductDetails />} />
         </Routes>
