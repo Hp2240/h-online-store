@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom'
-
 const Sidebar = () => {
   return (
     <div className="mene-hover-fill">

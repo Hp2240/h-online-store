@@ -1,19 +1,25 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { PromiseProvider } from 'mongoose'
 
 const Order = () => {
   const [buyProducts, setBuyProducts] = useState({})
   const [client, setClient] = useState()
-  const [search, setSearch] = useState([], {
+  const [search, setSearch] = useState({
     name: '',
     email: ''
   })
+  const [errorMsg, setErrorMsg] = useState('')
+  const [product, setProduct] = useState()
 
+  let [found, setFound] = useState(null)
+  let [img, setImg] = useState()
   useEffect(() => {
     const getProducts = async () => {
-      const res = await axios.get(`http://localhost:3001/api/orders`)
+      const res = await axios.get(`http://localhost:3001/api/products`)
       //console.log(res.data)
-      setBuyProducts(res.data.orders)
+      setBuyProducts(res.data.products)
     }
     getProducts()
   }, [])
@@ -28,19 +34,35 @@ const Order = () => {
   }, [])
 
   const handleChange = (event) => {
-    let info = { ...client, [event.target.id]: event.target.value }
+    let info = {
+      ...search,
+      [event.target.id]: event.target.value
+    }
+
     setSearch(info)
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(client)
-    console.log(search)
-    let searched = client.find((c) => c.email === search.email)
+    let searched = client.find(
+      (c) => c.email === search.email && c.name === search.name
+    )
     if (searched) {
       console.log('Order found')
+      setFound(searched)
+      try {
+        let res = await axios.get(
+          `http://localhost:3001/api/products/${searched.product_id}`
+        )
+        setProduct(res.data.poduct)
+        console.log(res.data.product)
+        setImg(res.data.product.image)
+      } catch (err) {
+        console.log(err)
+      }
     } else {
       console.log('Order not found')
+      setErrorMsg('Order not found')
     }
   }
 
@@ -75,6 +97,20 @@ const Order = () => {
           onChange={handleChange}
         />
         <button type="submit">Find</button>
+        <h4>Order Details: {found ? found.name : ''}</h4>
+        <button style={found ? { display: 'block' } : { display: 'none' }}>
+          Update
+        </button>
+        <button style={found ? { display: 'block' } : { display: 'none' }}>
+          Delete
+        </button>
+        <img
+          style={found ? { display: 'block' } : { display: 'none' }}
+          src={img}
+          width="150px"
+          height="150px"
+          alt="image"
+        />
       </form>
     </div>
 
