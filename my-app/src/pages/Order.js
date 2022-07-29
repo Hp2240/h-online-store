@@ -112,7 +112,7 @@ const Order = () => {
     console.log(searched)
     try {
       let res = await axios.delete(
-        `http://localhost:3001/api/clients/${client.id}`
+        `http://localhost:3001/api/clients/${searched._id}`
       )
       console.log('deleted')
     } catch (err) {

@@ -15,6 +15,7 @@ router.get('/clients', controllers.getAllClients)
 router.post('/clients', controllers.createClient)
 router.get('/clients/:id', controllers.getClientById)
 router.put('/clients/:id', controllers.updateClient)
+router.delete('/clients/:id', controllers.deleteClient)
 
 // orders
 router.get('/orders', controllers.getAllOrders)
