@@ -1,8 +1,8 @@
 const About = () => {
   return (
-    <div>
+    <section>
       <h1>This is About Page</h1>
-    </div>
+    </section>
   )
 }
 
