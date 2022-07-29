@@ -149,9 +149,11 @@ const Order = () => {
             <h5>Name: {found.name}</h5>
             <h5>Email: {found.email}</h5>
             <h5>Product Name: {product.name}</h5>
-            <button onClick={handleDeleteSubmit}>Delete</button>
             <img src={img} width="150px" height="150px" alt="image" />
-            <label>Select new item:</label>
+            <button onClick={handleDeleteSubmit}>Delete</button>
+            <h5>
+              <label>Select new item:</label>
+            </h5>
             <select onChange={handleProductChange}>{optionItem}</select>
             <button onClick={handleUpdateSubmit}>Update</button>
           </section>
