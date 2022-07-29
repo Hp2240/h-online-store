@@ -161,56 +161,7 @@ const Order = () => {
           ''
         )}
       </form>
-      {/* {found ? (
-        <section>
-          <h4>Order Details: {found.name}</h4>
-          <label>Select new item:</label>
-          <select onChange={handleProductChange}>{optionItem}</select>
-          <button>Update</button>
-          <button>Delete</button>
-        </section>
-      ) : (
-        ''
-      )} */}
-      {/* <button type="submit">Find</button>
-        <h4>Order Details: {found ? found.name : ''}</h4>
-        <button style={found ? { display: 'block' } : { display: 'none' }}>
-          Update
-        </button>
-        <label style={found ? { display: 'block' } : { display: 'none' }}>
-          Select new item:
-        </label>
-        <select
-          style={found ? { display: 'block' } : { display: 'none' }}
-          onChange={handleProductChange}
-        >
-          {optionItem}
-        </select>
-        <button
-          style={found ? { display: 'block' } : { display: 'none' }}
-          onSubmit={handleUpdateSubmit}
-        >
-          Delete
-        </button>
-        <img
-          style={found ? { display: 'block' } : { display: 'none' }}
-          src={img}
-          width="150px"
-          height="150px"
-          alt="image"
-        />
-      </form> */}
     </div>
-
-    // <form>
-    //   <label htmlFor="name">Name: </label>
-    //   <input type="text" id="name" onChange={handleChange} />
-    //   <label htmlFor="email">Email: </label>
-    //   <input type="text" id="email" onChange={handleChange} />
-    //   <label htmlFor="address">Address: </label>
-    //   <input type="text" id="address" onChange={handleChange} />
-    //   <button>submit</button>
-    // </form>
   )
 }
 
