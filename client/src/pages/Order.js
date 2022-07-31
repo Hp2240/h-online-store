@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import { set } from 'mongoose'
+import { Link } from 'react-router-dom'
 
 const Order = () => {
   const [buyProducts, setBuyProducts] = useState([])
@@ -158,6 +158,9 @@ const Order = () => {
         ) : (
           ''
         )}
+        <Link to="/">
+          <button>Back</button>
+        </Link>
       </form>
     </div>
   )

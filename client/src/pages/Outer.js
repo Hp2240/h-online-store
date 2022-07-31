@@ -1,29 +1,28 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import Home from './Home'
 
-const Outer = () => {
+const Outer = (props) => {
   const [productsCategory, SetProductsCategory] = useState([])
+  const [bottom, setbottom] = useState(null)
 
-  useEffect(() => {
-    const getProductByCategory = async () => {
-      const res = await axios.get(`http://localhost:3001/api/products`)
-      SetProductsCategory(res.data.products)
-    }
-    getProductByCategory()
-  }, [])
+  // useEffect(() => {
+  //   const getProductByCategory = async () => {
+  //     const res = await axios.get(`http://localhost:3001/api/products`)
+  //     console.log(res.data.products)
+  //     SetProductsCategory(res.data.products)
+  //   }
+  //   getProductByCategory()
+  // }, [])
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault()
-  const getOuter = () => {
-    let filtered = productsCategory.find((i) => i.category === 'bottom')
-    console.log(filtered)
-    if (filtered) {
-      return <img src={productsCategory.image} />
-    }
+  console.log(props.products)
+
+  let filtered = productsCategory.find((i) => i.category === 'bottom')
+  if (filtered) {
+    setbottom(filtered)
   }
 
-  return
-  ;<div>{getOuter}</div>
+  return <div>{/* {bottom ? {productsCategory.image} : ''} */}</div>
 }
 
 export default Outer

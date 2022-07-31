@@ -14,7 +14,6 @@ const ProductDetails = () => {
   })
   const [message, setMessage] = useState('')
   let { id } = useParams()
-  let navigate = useNavigate()
 
   useEffect(() => {
     const getProductDetails = async () => {
@@ -46,7 +45,6 @@ const ProductDetails = () => {
   const handleSubmit = async (event) => {
     try {
       let res = await axios.post(`http://localhost:3001/api/clients`, clients)
-      setMessage('Your order has been placed!')
     } catch (err) {
       console.log(err)
     }
