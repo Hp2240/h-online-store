@@ -6,7 +6,8 @@ const Sidebar = () => {
     <div className="mene-hover-fill">
       <ul>
         <li className="sidebar-element">
-          <Link to="/outer">OUTER</Link>
+          {/* <Link to="/outer">OUTER</Link> */}
+          <a>OUTER</a>
         </li>
         <li className="sidebar-element">
           <a>TOP</a>

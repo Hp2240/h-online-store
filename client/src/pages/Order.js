@@ -10,7 +10,6 @@ const Order = () => {
     name: '',
     email: ''
   })
-  const [errorMsg, setErrorMsg] = useState('')
   const [product, setProduct] = useState({})
 
   let [found, setFound] = useState(null)
@@ -63,7 +62,6 @@ const Order = () => {
       }
     } else {
       console.log('Order not found')
-      setErrorMsg('Order not found')
     }
   }
 
@@ -97,7 +95,7 @@ const Order = () => {
           `http://localhost:3001/api/products/${searched._id}`
         )
         setImg(pro.data.product.image)
-        console.log('??')
+        //console.log('??')
       } catch (err) {
         console.log(err)
       }
