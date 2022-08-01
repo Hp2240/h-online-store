@@ -12,13 +12,11 @@ const Home = () => {
   useEffect(() => {
     const getProducts = async () => {
       const res = await axios.get(`http://localhost:3001/api/products`)
-      //console.log(res.data.products)
       setProducts(res.data.products)
     }
     getProducts()
   }, [])
   const showProductDetails = (products) => {
-    //console.log(products._id)
     navigate(`/products/${products._id}`)
   }
 

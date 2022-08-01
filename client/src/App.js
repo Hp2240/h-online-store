@@ -10,12 +10,15 @@ import Order from './pages/Order'
 import ClientInfo from './components/ClientInfo'
 import ProductDetails from './components/ProductDetails'
 import Outer from './pages/Outer'
+import { Link } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
       <h1>
-        <img src={img} width="200px" height="100px" />
+        <Link to="/">
+          <img src={img} width="200px" height="100px" />
+        </Link>
       </h1>
       <header>
         <Header />

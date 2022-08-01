@@ -12,7 +12,6 @@ const ProductDetails = () => {
     email: '',
     address: ''
   })
-  const [message, setMessage] = useState('')
   let { id } = useParams()
 
   useEffect(() => {
